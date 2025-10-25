@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     // MARK: - UI Components
     
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
         eyeButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         eyeButton.tintColor = .grey300
         eyeButton.frame = CGRect(x: 0, y: 0, width: 18, height: 18)
-        eyeButton.addTarget(self, action: #selector(passwordVisibility), for: .touchUpInside)
+        eyeButton.addTarget(self, action: #selector(passwordVisibilityButtonDidTap), for: .touchUpInside)
         textField.rightView = eyeButton
         textField.rightViewMode = .always
         
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc
-    private func passwordVisibility(_ sender: UIButton) {
+    private func passwordVisibilityButtonDidTap(_ sender: UIButton) {
         passwordTextField.isSecureTextEntry.toggle()
         let imageName = passwordTextField.isSecureTextEntry ? "eye.slash" : "eye"
         sender.setImage(UIImage(systemName: imageName), for: .normal)

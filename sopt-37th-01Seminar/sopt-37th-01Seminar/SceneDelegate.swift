@@ -13,17 +13,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-      // 1.
+      // 1. scene이 UIWindowScene으로 캐스팅 가능한지 확인하고, 아니라면 종료
         guard let windowScene = (scene as? UIWindowScene) else { return }
-      // 2.
+      // 2. UIWindow 객체를 windowScene 기반으로 생성
         let window = UIWindow(windowScene: windowScene)
-      // 3.
+      // 3. LoginViewController를 루트로 하는 UINavigationController 생성
         let vc = UINavigationController(rootViewController: LoginViewController())
-      // 4.
+      // 4. 생성한 UINavigationController를 윈도우의 루트 뷰 컨트롤러로 설정
         window.rootViewController = vc
-      // 5.
+      // 5. SceneDelegate의 window 프로퍼티에 생성한 윈도우 할당
         self.window = window
-      // 6.
+      // 6. 윈도우를 키 윈도우로 설정하고 화면에 표시
         window.makeKeyAndVisible()
     }
 
