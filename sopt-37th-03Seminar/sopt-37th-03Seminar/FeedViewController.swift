@@ -21,6 +21,7 @@ public final class FeedViewController: UIViewController {
     // MARK: - UI Components
     
     private lazy var collectionView: UICollectionView = {
+        // 레이아웃 및 배치 관리
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical // 디폴트가 버티컬 입니다
         layout.minimumLineSpacing = lineSpacing

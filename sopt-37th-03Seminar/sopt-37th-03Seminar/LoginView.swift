@@ -45,19 +45,7 @@ final class LoginView: UIView {
         return button
     }()
     
-    /*
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setUI()
-        setLayout()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    */
-    
+    // 코드로 생성할 때 호출되는 생성자 (Storyboard/XIB 미사용)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -65,6 +53,8 @@ final class LoginView: UIView {
         setLayout()
     }
     
+    // UIView가 NSCoding 프로토콜을 따르기 때문에 필수 구현
+    // 하지만 코드로만 생성하므로 비가용 처리 (@available)로 런타임 호출 방지
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,10 +66,12 @@ final class LoginView: UIView {
     
     private func setLayout() {
         
+        addSubviews(titleLabel, idTextField, passwordTextField, loginButton)
+        /*
         [titleLabel, idTextField, passwordTextField, loginButton].forEach {
             self.addSubview($0)
         }
-        
+        */
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(163)

@@ -10,50 +10,49 @@ import SnapKit
 
 final class ChatTableViewCell: UITableViewCell {
     
-    static let identifier: String = "ChatTableViewCell"
+    static let identifier: String = "ChatTableViewCell" // 셀 구분
 
     // MARK: - UI Components
 
-        private let profileImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 20
-            imageView.backgroundColor = .systemGray5
-            return imageView
-        }()
-    
-        private let nameLabel: UILabel = {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 16, weight: .semibold)
-            label.text = "박정환"
-            label.textColor = .black
-            return label
-        }()
-    
-        private let locationLabel: UILabel = {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 13)
-            label.textColor = .systemGray
-            return label
-        }()
-    
-        private let messageLabel: UILabel = {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 14)
-            label.textColor = .black
-            label.numberOfLines = 1
-            return label
-        }()
-    
-        private let thumbnailImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 4
-            imageView.backgroundColor = .systemGray6
-            return imageView
-        }()
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        imageView.backgroundColor = .systemGray5
+        return imageView
+    }()
+
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .black
+        return label
+    }()
+
+    private let locationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .systemGray
+        return label
+    }()
+
+    private let messageLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .black
+        label.numberOfLines = 1
+        return label
+    }()
+
+    private let thumbnailImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 4
+        imageView.backgroundColor = .systemGray6
+        return imageView
+    }()
 
     // MARK: - Init
 
@@ -77,9 +76,13 @@ final class ChatTableViewCell: UITableViewCell {
     }
 
     private func setHierarchy() {
-        [profileImageView, nameLabel, locationLabel, messageLabel, thumbnailImageView].forEach {
-            self.addSubview($0)
-        }
+        contentView.addSubviews(
+            profileImageView,
+            nameLabel,
+            locationLabel,
+            messageLabel,
+            thumbnailImageView
+        )
     }
 
     private func setLayout() {
@@ -111,7 +114,7 @@ final class ChatTableViewCell: UITableViewCell {
             $0.size.equalTo(40)
         }
     }
-    
+
     // MARK: - Configuration
 
     func configure(chatRoom: ChatRoomModel) {
