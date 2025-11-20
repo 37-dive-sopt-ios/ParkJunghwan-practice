@@ -27,3 +27,5 @@ struct ChatRoomModel {
         ChatRoomModel(profileImage: UIImage(named: "profile4"), name: "진소은", location: "캐나다", lastMessage: "감사합니다! 조심하가세요~!", thumbnail: UIImage(named: "item10"))
     ]
 }
+
+

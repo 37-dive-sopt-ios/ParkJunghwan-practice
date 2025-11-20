@@ -8,18 +8,17 @@
 import UIKit
 import SnapKit
 
-final class ChatViewController: UIViewController { // -- 1번
+final class ChatViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private let tableView = UITableView(frame: .zero, style: .plain) // -- 2번
+    private let tableView = UITableView(frame: .zero, style: .plain) // 테이블 뷰 객체 초기화
     
     // MARK: - Properties
     
     private var chatRooms: [ChatRoomModel] = []
     
     // MARK: - Init
-    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,47 +28,39 @@ final class ChatViewController: UIViewController { // -- 1번
     }
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
+        setLayout()
         register()
         setDelegate()
-        setLayout()
-        loadMockData()
     }
     
     // MARK: - UI Setup
     
-    private func setUI() {
+    private func register() { // 셀 등록
+        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
+    }
+    
+    private func setDelegate() { // 누구한테 짬 때릴건지 채택!
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setUI() {  // 기본 속성 정의
         view.backgroundColor = .white
         title = "채팅"
         tableView.separatorStyle = .singleLine
     }
     
-    private func setLayout() { // -- 3번
+    private func setLayout() {           // 레이아웃 잡기~!
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-    
-    private func register() {
-        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
-    }
-    
-    private func setDelegate() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    // MARK: - Data
-    
-    private func loadMockData() {
-        chatRooms = ChatRoomModel.mockData
-        tableView.reloadData()
     }
 }
 
@@ -89,7 +80,7 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRooms.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,7 +92,6 @@ extension ChatViewController: UITableViewDataSource {
         return cell
     }
 }
-
 
 #Preview() {
     ChatViewController()
