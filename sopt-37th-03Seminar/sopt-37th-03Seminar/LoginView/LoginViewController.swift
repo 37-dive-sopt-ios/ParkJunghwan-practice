@@ -11,8 +11,6 @@ import SnapKit
 final class LoginViewController: UIViewController {
     
     // MARK: - Properties
-    
-    // View 호출
     private let rootView = LoginView()
 
     // MARK: - Life Cycle
